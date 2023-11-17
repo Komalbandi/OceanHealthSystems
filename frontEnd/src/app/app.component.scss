@@ -3,5 +3,5 @@
 @import 'tailwindcss/utilities';
 
 .app--container{
-  @apply container;
+  @apply container mx-auto;
 }

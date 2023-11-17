@@ -1,0 +1,58 @@
+.login--form {
+  @apply flex flex-col form-control w-full;
+
+  .login--form-control {
+    @apply form-control w-full;
+
+    .login--header {
+      @apply underline flex justify-center w-full;
+    }
+
+    .login--div__email {
+      @apply flex flex-col;
+
+      .login--label__email {
+        @apply label;
+
+        span {
+          @apply label-text;
+        }
+      }
+
+      .login--input__email {
+        @apply flex input input-bordered w-full;
+      }
+
+      .login--input-error {
+        @apply text-red;
+      }
+    }
+
+    .login--div__password {
+      .login--label__password {
+        @apply label;
+
+        span {
+          @apply label-text;
+        }
+      }
+
+      .login--input__password {
+        @apply flex input input-bordered w-full;
+      }
+
+      .login--input-error {
+        @apply text-red;
+      }
+    }
+
+    .login--div__submit {
+      @apply flex justify-center m-2;
+
+      button {
+        @apply btn flex w-32;
+      }
+    }
+
+  }
+}

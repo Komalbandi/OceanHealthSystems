@@ -1,0 +1,26 @@
+<form class="login--form" [formGroup]="loginForm" (submit)="submitLogin()">
+  <div class="login--form-control">
+    <h1 class="login--header">Blossom</h1>
+    <div class="login--div__email">
+      <label class="login--label__email">
+        <span>User name</span>
+      </label>
+      <input type="text" placeholder="User name" class="login--input__email" formControlName="userName"/>
+      <em class="login--input-error" *ngIf="!loginForm.get('userName')?.pristine && loginForm.get('userName')?.errors">This field is required</em>
+    </div>
+
+    <div class="login--div__password">
+      <label class="login--label__password">
+        <span>Password</span>
+      </label>
+      <div class="login--input-div">
+        <input type="password" placeholder="" class="login--input__password" formControlName="userPassword"/>
+        <em class="login--input-error" *ngIf="!loginForm.get('userPassword')?.pristine && loginForm.get('userPassword')?.errors">This field is required</em>
+      </div>
+    </div>
+
+    <div class="login--div__submit">
+      <button type="submit">Log in</button>
+    </div>
+  </div>
+</form>
