@@ -3,10 +3,10 @@
   <div class="sidebar">
     <h1 class="logo">Blossom</h1>
     <div class="navbar">
-      <button>Home</button>
+      <button [routerLink]="['/home']" [ngClass]="{'active':router.url==='/home'}">Home</button>
     </div>
     <div class="navbar">
-      <button>Staff</button>
+      <button [routerLink]="['/staff']" [ngClass]="{'active':router.url==='/staff'}">Staff</button>
     </div>
   </div>
 

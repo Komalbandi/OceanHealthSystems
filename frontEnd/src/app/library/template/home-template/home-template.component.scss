@@ -9,6 +9,10 @@
 
       button {
         @apply btn btn-link text-xl;
+
+        &.active {
+          @apply btn-active;
+        }
       }
     }
   }
