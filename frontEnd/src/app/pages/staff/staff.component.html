@@ -1,14 +1,24 @@
 <app-home-template>
   <p class="staff-name">Jane Brown</p>
   <div class="vaccine-info">
-    <form class="search-vaccine--form" [formGroup]="searchVaccineForm" (submit)="searchVaccine()">
-      <label for="search-vaccine--input">Search vaccine</label>
-      <input type="text" placeholder="" class="search-vaccine--input" id="search-vaccine--input"
-        formControlName="vaccineSearchText" />
-      <button type="submit">Search</button>
-    </form>
-    <em class="form-error"
+    <div class="vaccine-form">
+      <form class="search-vaccine--form" [formGroup]="searchVaccineForm" (submit)="searchVaccine()">
+        <label for="search-vaccine--input">Search vaccine</label>
+        <input type="text" placeholder="" class="search-vaccine--input" id="search-vaccine--input"
+          formControlName="vaccineSearchText" />
+        <button type="submit">Search</button>
+      </form>
+      <em class="form-error"
         *ngIf="!searchVaccineForm.get('vaccineSearchText')?.pristine && searchVaccineForm.get('vaccineSearchText')?.errors">This
         field is required</em>
+    </div>
+    <div class="search-vaccine--results" *ngIf="searchVaccineResult">
+      <div class="search-vaccine--card" *ngFor="let result of searchVaccineResult.all ">
+        <div class="search-vaccine--card__body">
+          <h2 class="search-vaccine--card__title">{{result.header}}</h2>
+          <p>{{result.details}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </app-home-template>

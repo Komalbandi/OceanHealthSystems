@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PostService } from '../../../providers/serverFacade/post/post.service';
 import { ErrorService } from '../../../providers/serverFacade/error/error.service';
-import { first, Observable, from } from 'rxjs';
-import {
-  HttpErrorResponse,
-} from '@angular/common/http';
+import { first, Observable, from, catchError, map } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SearchVaccineInterface } from '../../../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -17,19 +16,11 @@ export class ServerService {
   ) {}
 
   getVaccine(params: any): Observable<any> {
-    return new Observable((obs)=>{
-      this.postService
-      .post(this.vaccineSearchUrl, params)
-      .pipe(first())
-      .subscribe({
-        next: (data: any) => {
-          console.log(data);
-          obs.next(data);
-        },
-        error: (err: HttpErrorResponse) => {
-          this.errorService.error(err);
-        },
-      });
-    })
+    return this.postService
+      .post<SearchVaccineInterface[]>(this.vaccineSearchUrl, params)
+      .pipe(
+        first(),
+        map((data) => data)
+      );
   }
 }

@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { ServerService } from './common/server.service';
 import { first, pipe } from 'rxjs';
+import { SearchVaccineInterface } from '../../interfaces';
+import { SearchVaccineCollection } from '../../models/collection/search-vaccine-collection';
 
 @Component({
   selector: 'app-staff',
@@ -15,6 +17,7 @@ import { first, pipe } from 'rxjs';
 })
 export class StaffComponent {
   searchVaccineForm: FormGroup;
+  searchVaccineResult?: SearchVaccineCollection;
   constructor(public fb: FormBuilder, public serverService: ServerService) {
     this.searchVaccineForm = fb.group({
       vaccineSearchText: new FormControl('', [Validators.required]),
@@ -23,7 +26,6 @@ export class StaffComponent {
 
   searchVaccine() {
     if (this.searchVaccineForm.status !== 'INVALID') {
-      console.log(this.searchVaccineForm.value);
       this.getVaccine(this.searchVaccineForm.value);
     }
   }
@@ -33,7 +35,9 @@ export class StaffComponent {
       .getVaccine(data)
       .pipe(first())
       .subscribe({
-        next: () => {},
+        next: (datas: SearchVaccineInterface[]) => {
+          this.searchVaccineResult = new SearchVaccineCollection(datas);
+        },
         error: () => {},
       });
   }

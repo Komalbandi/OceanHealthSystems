@@ -3,23 +3,39 @@
 }
 
 .vaccine-info {
-  .search-vaccine--form {
-    @apply flex flex-row form-control w-full;
+  .vaccine-form {
+    .search-vaccine--form {
+      @apply flex flex-row form-control w-full;
 
-    label {
-      display: none;
+      label {
+        display: none;
+      }
+
+      input {
+        @apply flex input input-bordered w-full;
+      }
+
+      button {
+        @apply btn flex w-32;
+      }
     }
 
-    input {
-      @apply flex input input-bordered w-full;
-    }
-
-    button {
-      @apply btn flex w-32;
+    .form-error {
+      @apply text-red w-full;
     }
   }
 
-  .form-error {
-    @apply text-red w-full;
+  .search-vaccine--results {
+    .search-vaccine--card {
+      @apply card w-full bg-base-100 shadow-xl;
+    }
+
+    .search-vaccine--card__body{
+      @apply card-body;
+
+      .search-vaccine--card__title{
+        @apply card-title;
+      }
+    }
   }
 }
