@@ -1,8 +1,14 @@
 <app-home-template>
-  <p>Jane Brown</p>
+  <p class="staff-name">Jane Brown</p>
   <div class="vaccine-info">
-    <form>
-
+    <form class="search-vaccine--form" [formGroup]="searchVaccineForm" (submit)="searchVaccine()">
+      <label for="search-vaccine--input">Search vaccine</label>
+      <input type="text" placeholder="" class="search-vaccine--input" id="search-vaccine--input"
+        formControlName="vaccineSearchText" />
+      <button type="submit">Search</button>
     </form>
+    <em class="form-error"
+        *ngIf="!searchVaccineForm.get('vaccineSearchText')?.pristine && searchVaccineForm.get('vaccineSearchText')?.errors">This
+        field is required</em>
   </div>
 </app-home-template>

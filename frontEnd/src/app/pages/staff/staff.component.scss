@@ -1,0 +1,25 @@
+.staff-name {
+  @apply flex justify-end;
+}
+
+.vaccine-info {
+  .search-vaccine--form {
+    @apply flex flex-row form-control w-full;
+
+    label {
+      display: none;
+    }
+
+    input {
+      @apply flex input input-bordered w-full;
+    }
+
+    button {
+      @apply btn flex w-32;
+    }
+  }
+
+  .form-error {
+    @apply text-red w-full;
+  }
+}
