@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { PostService } from '../../../providers/serverFacade/post/post.service';
-import { first, Observable } from 'rxjs';
-import { HttpErrorResponse, HttpEvent, HttpResponse } from '@angular/common/http';
+import { first, Observable, throwError, catchError } from 'rxjs';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpResponse,
+} from '@angular/common/http';
 import { ErrorService } from '../../../providers/serverFacade/error/error.service';
-import {LoginData,LoginSuccessData} from '../../../interfaces';
+import { LoginData, LoginSuccessData } from '../../../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +20,12 @@ export class ServerService {
   ) {}
 
   getLogin(params: LoginData): Observable<LoginSuccessData> {
-    return new Observable((obs) => {
-      this.postService
-        .post(this.url, params)
-        .pipe(first())
-        .subscribe({
-          next: (data: any) => {
-            obs.next(data);
-          },
-          error: (err: HttpErrorResponse) => {
-            this.errorService.error(err);
-          },
-        });
-    });
+    return this.postService.post<LoginSuccessData>(this.url, params).pipe(
+      first(),
+      catchError((err: HttpErrorResponse) => {
+        this.errorService.error(err);
+        return throwError(() => err);
+      })
+    );
   }
 }

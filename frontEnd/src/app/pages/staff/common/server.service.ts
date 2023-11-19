@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PostService } from '../../../providers/serverFacade/post/post.service';
 import { ErrorService } from '../../../providers/serverFacade/error/error.service';
-import { first, Observable, from, catchError, map } from 'rxjs';
+import { first, Observable, from, catchError, map, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SearchVaccineInterface } from '../../../interfaces';
 
@@ -20,7 +20,10 @@ export class ServerService {
       .post<SearchVaccineInterface[]>(this.vaccineSearchUrl, params)
       .pipe(
         first(),
-        map((data) => data)
+        catchError((err:HttpErrorResponse) => {
+          this.errorService.error(err);
+          return throwError(()=>err);
+        })
       );
   }
 }

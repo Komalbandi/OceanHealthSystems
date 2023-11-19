@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { GetService } from '../../../providers/serverFacade/get/get.service';
 import { ErrorService } from '../../../providers/serverFacade/error/error.service';
-import { first, Observable } from 'rxjs';
+import { catchError, first, Observable, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Notifications } from '../../../interfaces';
 
@@ -16,18 +16,12 @@ export class ServerService {
   ) {}
 
   getNotification<T>(): Observable<T> {
-    return new Observable((obs) => {
-      this.getService
-        .getService<T>(this.url)
-        .pipe(first())
-        .subscribe({
-          next: (returnData: T) => {
-            obs.next(returnData);
-          },
-          error: (err: HttpErrorResponse) => {
-            this.errorService.error(err);
-          },
-        });
-    });
+    return this.getService.getService<T>(this.url).pipe(
+      first(),
+      catchError((err: HttpErrorResponse) => {
+        this.errorService.error(err);
+        return throwError(() => err);
+      })
+    );
   }
 }
