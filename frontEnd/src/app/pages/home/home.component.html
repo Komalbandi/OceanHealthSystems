@@ -1,3 +1,19 @@
 <app-home-template>
-  <h2>Hi there this is workins</h2>
+  <div *ngIf="notificationDatas else hasData">
+    <!-- Todo: add this to the library component -->
+    <div class="accordion-menu">
+      <ul *ngIf="notificationDatas">
+        <li *ngFor="let data of notificationDatas!.all">
+          <input type="checkbox" checked>
+          <i class="arrow"></i>
+          <h2>{{data.header}}<br />{{data.location}}<br />{{data.date}}</h2>
+          <p>{{data.details}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
 </app-home-template>
+
+<ng-template #hasData>
+  <p>Loading</p>
+</ng-template>
