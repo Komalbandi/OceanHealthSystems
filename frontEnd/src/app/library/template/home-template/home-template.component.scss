@@ -1,0 +1,19 @@
+.home-template {
+  @apply container flex flex-row;
+
+  .sidebar {
+    @apply flex flex-col w-1/4;
+
+    .navbar {
+      @apply text-neutral-content;
+
+      button {
+        @apply btn btn-link text-xl;
+      }
+    }
+  }
+
+  .main {
+    @apply flex flex-col w-3/4;
+  }
+}
