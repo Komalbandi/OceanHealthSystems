@@ -1,22 +1,74 @@
 <app-home-template>
-  <p class="staff-name">Jane Brown</p>
-  <div class="vaccine-info">
-    <div class="vaccine-form">
-      <form class="search-vaccine--form" [formGroup]="searchVaccineForm" (submit)="searchVaccine()">
-        <label for="search-vaccine--input">Search vaccine</label>
-        <input type="text" placeholder="" class="search-vaccine--input" id="search-vaccine--input"
-          formControlName="vaccineSearchText" />
-        <button type="submit">Search</button>
-      </form>
-      <em class="form-error"
-        *ngIf="!searchVaccineForm.get('vaccineSearchText')?.pristine && searchVaccineForm.get('vaccineSearchText')?.errors">This
-        field is required</em>
+  <h1 class="staff-name">Jane Brown</h1>
+  <div class="staff-dashboard">
+    <div class="staff-info">
+      <div class="staff-search--form">
+        <form [formGroup]="searchStaffForm" (submit)="searchStaff()">
+          <label for="staff-search--input">Search staff</label>
+          <input type="text" placeholder="" class="staff-search--input" id="staff-search--input"
+            formControlName="staffSearchText" />
+          <button type="submit">Search</button>
+        </form>
+        <em class="form-error"
+          *ngIf="!searchStaffForm.get('staffSearchText')?.pristine && searchStaffForm.get('staffSearchText')?.errors">This
+          field is required</em>
+      </div>
+      <div class="staff-search--results">
+        <div class="staff-search--card">
+          <div class="staff-search--card__body">
+            <h2 class="staff-search--card__title">Heather wood</h2>
+            <p>Role: physiotherapist</p>
+            <p>Mobile: 555 9823 324</p>
+
+            <div class="staff-search--vacciination-status">
+              <label class="label">
+                <span class="label-text">Vaccination status</span>
+              </label>
+              <select>
+                <option disabled selected>Pick one</option>
+                <option>Not assessed</option>
+                <option>Assessed</option>
+              </select>
+            </div>
+
+            <div class="medical-background">
+              <label>
+                <span>Medical background as reported</span>
+              </label>
+              <textarea placeholder="Bio"></textarea>
+            </div>
+
+            <div class="professional-notes">
+              <label>
+                <span>Infection control professional's notes</span>
+              </label>
+              <textarea placeholder=""></textarea>
+            </div>
+
+            <button type="submit">Save</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="search-vaccine--results" *ngIf="searchVaccineResult">
-      <div class="search-vaccine--card" *ngFor="let result of searchVaccineResult.all ">
-        <div class="search-vaccine--card__body">
-          <h2 class="search-vaccine--card__title">{{result.header}}</h2>
-          <p>{{result.details}}</p>
+
+    <div class="vaccine-info">
+      <div class="vaccine-form">
+        <form class="search-vaccine--form" [formGroup]="searchVaccineForm" (submit)="searchVaccine()">
+          <label for="search-vaccine--input">Search vaccine</label>
+          <input type="text" placeholder="" class="search-vaccine--input" id="search-vaccine--input"
+            formControlName="vaccineSearchText" />
+          <button type="submit">Search</button>
+        </form>
+        <em class="form-error"
+          *ngIf="!searchVaccineForm.get('vaccineSearchText')?.pristine && searchVaccineForm.get('vaccineSearchText')?.errors">This
+          field is required</em>
+      </div>
+      <div class="search-vaccine--results" *ngIf="searchVaccineResult">
+        <div class="search-vaccine--card" *ngFor="let result of searchVaccineResult.all ">
+          <div class="search-vaccine--card__body">
+            <h2 class="search-vaccine--card__title">{{result.header}}</h2>
+            <p>{{result.details}}</p>
+          </div>
         </div>
       </div>
     </div>

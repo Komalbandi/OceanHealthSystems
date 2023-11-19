@@ -18,9 +18,15 @@ import { SearchVaccineCollection } from '../../models/collection/search-vaccine-
 export class StaffComponent {
   searchVaccineForm: FormGroup;
   searchVaccineResult?: SearchVaccineCollection;
+
+  searchStaffForm: FormGroup;
   constructor(public fb: FormBuilder, public serverService: ServerService) {
     this.searchVaccineForm = fb.group({
       vaccineSearchText: new FormControl('', [Validators.required]),
+    });
+
+    this.searchStaffForm = fb.group({
+      staffSearchText: new FormControl('', [Validators.required]),
     });
   }
 
@@ -40,5 +46,9 @@ export class StaffComponent {
         },
         error: () => {},
       });
+  }
+
+  searchStaff(){
+
   }
 }

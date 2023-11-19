@@ -1,40 +1,115 @@
 .staff-name {
-  @apply flex justify-end;
+  @apply flex w-full justify-end;
 }
 
-.vaccine-info {
-  .vaccine-form {
-    .search-vaccine--form {
-      @apply flex flex-row form-control w-full;
+.staff-dashboard {
+  @apply flex flex-row;
 
-      label {
-        display: none;
+  .staff-info {
+    @apply basis-3/4;
+
+    .staff-search--form {
+      form {
+        @apply flex flex-row form-control w-full;
+
+        label {
+          display: none;
+        }
+
+        input {
+          @apply flex input input-bordered w-full;
+        }
+
+        button {
+          @apply btn flex w-32;
+        }
       }
 
-      input {
-        @apply flex input input-bordered w-full;
-      }
-
-      button {
-        @apply btn flex w-32;
+      .form-error {
+        @apply text-red w-full;
       }
     }
 
-    .form-error {
-      @apply text-red w-full;
+    .staff-search--results {
+      .staff-search--card {
+        @apply card w-full bg-base-100 shadow-xl;
+      }
+
+      .staff-search--card__body {
+        @apply card-body;
+
+        .staff-search--card__title {
+          @apply card-title;
+        }
+
+        .staff-search--vacciination-status {
+          @apply form-control;
+
+          select {
+            @apply select select-bordered;
+          }
+        }
+
+        .medical-background,.professional-notes {
+          @apply form-control;
+
+          label {
+            @apply label;
+
+            span {
+              @apply label-text;
+            }
+          }
+
+          textarea {
+            @apply textarea textarea-bordered h-24;
+          }
+        }
+
+        button {
+          @apply btn btn-success w-20;
+        }
+      }
     }
   }
 
-  .search-vaccine--results {
-    .search-vaccine--card {
-      @apply card w-full bg-base-100 shadow-xl;
+  .vaccine-info {
+    @apply basis-2/5 ml-5;
+
+    .vaccine-form {
+
+      .search-vaccine--form {
+        @apply flex flex-row form-control w-full;
+
+        label {
+          display: none;
+        }
+
+        input {
+          @apply flex input input-bordered w-full;
+        }
+
+        button {
+          @apply btn flex w-32;
+        }
+      }
+
+      .form-error {
+        @apply text-red w-full;
+      }
     }
 
-    .search-vaccine--card__body{
-      @apply card-body;
+    .search-vaccine--results {
+      .search-vaccine--card {
+        @apply card w-full bg-base-100 shadow-xl;
+      }
 
-      .search-vaccine--card__title{
-        @apply card-title;
+      .search-vaccine--card__body {
+        @apply card-body;
+
+        .search-vaccine--card__title {
+          @apply card-title;
+        }
       }
     }
   }
