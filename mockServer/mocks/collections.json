@@ -6,7 +6,8 @@
       "get-users:success",
       "get-user:success",
       "get-login:success",
-      "get-notifications:success"
+      "get-notifications:success",
+      "get-vaccination:success"
     ]
   },
   {
