@@ -8,10 +8,11 @@
       @apply underline flex justify-center w-full;
     }
 
-    .login--div__email {
+    .login--div__email,
+    .login--div__password {
       @apply flex flex-col;
 
-      .login--label__email {
+      [class^="login--label__"] {
         @apply label;
 
         span {
@@ -19,25 +20,7 @@
         }
       }
 
-      .login--input__email {
-        @apply flex input input-bordered w-full;
-      }
-
-      .login--input-error {
-        @apply text-red;
-      }
-    }
-
-    .login--div__password {
-      .login--label__password {
-        @apply label;
-
-        span {
-          @apply label-text;
-        }
-      }
-
-      .login--input__password {
+      [class^="login--input__"] {
         @apply flex input input-bordered w-full;
       }
 
