@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { first } from 'rxjs';
+import { Router } from '@angular/router';
+import { ServerService } from './common/server.service';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +17,31 @@ import {
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(
+    public fb: FormBuilder,
+    public serverCall: ServerService,
+    public router: Router
+  ) {
     this.loginForm = fb.group({
       userName: new FormControl('', [Validators.required]),
       userPassword: new FormControl('', [Validators.required]),
     });
   }
 
-  ngOnInit():void{
-
+  submitLogin() {
+    if (this.loginForm.status !== 'INVALID') {
+      this.login();
+    }
   }
 
-  submitLogin() {
-    console.log(this.loginForm.get('userName'));
+  login() {
+    this.serverCall
+      .getLogin(this.loginForm.value)
+      .pipe(first())
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/home']);
+        },
+      });
   }
 }
