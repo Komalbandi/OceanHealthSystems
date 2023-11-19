@@ -10,7 +10,7 @@ export class GetService {
 
   constructor(public httpWeb: HttpClient) {}
 
-  public getService<T>(url: string, params: any): Observable<T> {
+  public getService<T>(url: string): Observable<T> {
     return this.httpWeb.get<T>(url);
   }
 }
