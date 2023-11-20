@@ -17,13 +17,12 @@ export class HomeComponent {
 
   getNotifications() {
     this.serverService
-      .getNotification<NotificationsInterface[]>()
+      .getNotification()
       .pipe(first())
       .subscribe({
         next: (datas: NotificationsInterface[]) => {
           this.notificationDatas = new NotificationCollection(datas);
-          console.log(this.notificationDatas.all[0].header);
-        }
+        },
       });
   }
 }

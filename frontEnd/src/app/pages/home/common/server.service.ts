@@ -3,7 +3,7 @@ import { GetService } from '../../../providers/serverFacade/get/get.service';
 import { ErrorService } from '../../../providers/serverFacade/error/error.service';
 import { catchError, first, Observable, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Notifications } from '../../../interfaces';
+import { Notifications as NotificationInterface } from '../../../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -15,8 +15,8 @@ export class ServerService {
     public errorService: ErrorService
   ) {}
 
-  getNotification<T>(): Observable<T> {
-    return this.getService.getService<T>(this.url).pipe(
+  getNotification(): Observable<NotificationInterface[]> {
+    return this.getService.getService<NotificationInterface[]>(this.url).pipe(
       first(),
       catchError((err: HttpErrorResponse) => {
         this.errorService.error(err);
