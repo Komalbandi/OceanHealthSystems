@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import { ServerService } from './common/server.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeTemplateModule } from '../../library/template/home-template/home-template.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +12,9 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent]
+      declarations: [HomeComponent],
+      providers: [ServerService],
+      imports: [HttpClientModule,HomeTemplateModule,RouterTestingModule]
     });
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
